@@ -1,5 +1,5 @@
 //THIS IS A NEW CLASS. (or maybe it's an old one, I don't remember when it was made exactly)
-//Oh noes I forgot this one.
+//Oh noes I forgot this one. Luckily I remembered about it.
 public class KeyMatrix {
     private final byte[][] bytes;
     private final RCon rcon;
