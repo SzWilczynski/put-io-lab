@@ -1,3 +1,4 @@
+//THIS IS A NEW CLASS.
 public class KeyMatrix {
     private final byte[][] bytes;
     private final RCon rcon;
