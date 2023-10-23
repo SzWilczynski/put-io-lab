@@ -1,3 +1,4 @@
 # put-io-lab
 Szymon Wilczyński
-Dzisiaj jest 23 października 2023.
+
+W momencie gdy jest to pisanie, jest 23 października 2023.
