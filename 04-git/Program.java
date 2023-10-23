@@ -8,11 +8,13 @@ public class KeyMatrix {
         bytes = input;
         rcon = new RCon((byte) 1);
     }
+	//Secondary constructor.
     public KeyMatrix(byte[][] input, RCon newRcon)
     {
         bytes = input;
         rcon = newRcon;
     }
+	//Getter.
     public byte[][] Key()
     {
         return bytes;
