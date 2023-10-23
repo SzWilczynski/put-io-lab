@@ -1,8 +1,10 @@
 //THIS IS A NEW CLASS. (or maybe it's an old one, I don't remember when it was made exactly)
+//Oh noes I forgot this one.
 public class KeyMatrix {
     private final byte[][] bytes;
     private final RCon rcon;
 
+	//Base constructor
     public KeyMatrix(byte[][] input)
     {
         bytes = input;
