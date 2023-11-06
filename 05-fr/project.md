@@ -16,7 +16,7 @@ Specyfikacja wymagań funkcjonalnych w ramach informatyzacji procesu sprzedaży 
 
 **Scenariusz główny:**
 1. [Sprzedający](#ac1) wystawia produkt na aukcję. ([UC1](#uc1))
-2. [Kupujący](#ac2) oferuje kwotę za produkt wyższą od aktualnie najwyższej oferty. ([BR1](#br1))
+2. [Kupujący](#ac2) oferuje kwotę za produkt wyższą od aktualnie najwyższej oferty. ([UC2](#uc2))
 3. [Kupujący](#ac2) wygrywa aukcję ([BR2](#br2))
 4. [Kupujący](#ac2) przekazuje należność Sprzedającemu.
 5. [Sprzedający](#ac1) przekazuje produkt Kupującemu.
@@ -50,10 +50,14 @@ Osoba chcąca zakupić produkt na aukcji.
 
 [Sprzedający](#ac1):
 * [UC1](#uc1): Wystawienie produktu na aukcję
-* ...
+* [UC4](#uc4): Zamknięcie aukcji
 
 [Kupujący](#ac2)
-* ...
+* [UC2](#uc2): Podbicie najwyższej oferty
+* [UC3](#uc3): Odbiór produktu nabytego na aukcji
+* [UC4](#uc4): Zamknięcie aukcji
+* [UC5](#uc5): Przejrzenie dostępnych aukcji
+* [UC6](#uc6): Potwierdzenie odbioru produktu
 
 ---
 <a id="uc1"></a>
@@ -77,21 +81,93 @@ Osoba chcąca zakupić produkt na aukcji.
 ---
 
 <a id="uc2"></a>
-### UC2: ...
+### UC2: Podbicie najwyższej oferty
 
-**Aktorzy:** [Sprzedający](#ac1), [Kupujący](#ac2), ...
+**Aktorzy:** [Kupujący](#ac2)
 
 **Scenariusz główny:**
-1. ...
+1. [Kupujący](#ac2) zgłasza do systemu chęć podbicia oferty.
+2. System prosi o podanie kwoty nowej oferty.
+3. [Kupujący](#ac2) podaje kwotę nowej oferty.
+4. System weryfikuje poprawność danych.
+5. System informuje o pomyślnym wystawieniu nowej oferty.
 
 **Scenariusze alternatywne:** 
 
-1.A. ...
-* 4.A.1. ...
+4.A. Podana kwota jest zbyt mała lub niepoprawna.
+* 4.A.1. System informuje o niepoprawnej oferowanej kwocie.
+* 4.A.2. Przejdź do kroku 2.
+
+4.B. Podana kwota wykracza poza dostępne środki [Kupującego](#ac2).
+* 4.B.1. System informuje o zbyt dużej oferowanej kwocie.
+* 4.B.2. Przejdź do kroku 2.
 
 ---
 
-## Obiewkty biznesowe (inaczje obiekty dziedzinowe lub informatycjne)
+<a id="uc3"></a>
+### UC3: Odbiór produktu nabytego na aukcji
+
+**Aktorzy:** [Kupujący](#ac2)
+
+**Scenariusz główny:**
+1. [Kupujący](#ac2) zgłasza do systemu chęć odbioru nabytego produktu.
+2. System udostępnia wszystkie dane o nabytym produkcie [Kupującemu](#ac2).
+
+**Scenariusze alternatywne:** 
+
+2.A. Nabytym produktem jest obiekt materialny.
+* 2.A.1. System prosi o podanie danych pocztowych do wysyłki.
+* 2.A.2. [Kupujący](#ac2) podaje dane pocztowe.
+* 2.A.3. System informuje [Kupującego](#ac2) o nadaniu wysyłki.
+
+2.A.2.A. Podane dane są niekompletne lub niepoprawne.
+* 2.A.2.A.1 System informuje o niepoprawnych danych do wysyłki.
+* 2.A.2.A.2 Przejdź do kroku 2.A.1.
+
+---
+
+<a id="uc4"></a>
+### UC4: Zamknięcie aukcji
+
+**Aktorzy:** [Sprzedający](#ac1), [Kupujący](#ac2)
+
+**Scenariusz główny:**
+1. System informuje wszystkich aktorów o zakończeniu aukcji.
+2. System pobiera należność z konta [Kupującego](#ac2) z najwyższą ofertą i przekazuje ją [Sprzedającemu](#ac1).
+3. System przekazuje posiadanie produktu do [Kupującego](#ac2) z najwyższą ofertą.
+
+**Scenariusze alternatywne:** 
+
+---
+
+<a id="uc5"></a>
+### UC5: Przejrzenie dostępnych aukcji
+
+**Aktorzy:** [Kupujący](#ac2)
+
+**Scenariusz główny:**
+1. System prosi [Kupującego](#ac2) o podanie opcjonalnych wymagań.
+2. System pokazuje [Kupującemu](#ac2) spis wszystkich aktywnych aukcji spełniających podane wymagania.
+
+**Scenariusze alternatywne:** 
+
+---
+
+<a id="uc6"></a>
+### UC6: Potwierdzenie odbioru produktu
+
+**Aktorzy:** [Kupujący](#ac2)
+
+**Scenariusz główny:**
+1. [Kupujący](#ac2) informuje system o pomyślnym odebraniu produktu.
+2. Rekord produktu jest usuwany z systemu.
+3. System informuje [Kupującego](#ac2) o pomyślnym usunięciu produktu.
+
+**Scenariusze alternatywne:** 
+
+---
+
+## Obiekty biznesowe (inaczej obiekty dziedzinowe lub informatyczne)
 
 ### BO1: Aukcja
 
@@ -117,9 +193,11 @@ Aukcję wygrywa ten z [Kupujący](#ac2)ch, który w momencie jej zakończenia (u
 ## Macierz CRUDL
 
 
-| Przypadek użycia                                  | Aukcja | Produkt | ... |
-| ------------------------------------------------- | ------ | ------- | --- |
-| UC1: Wystawienia produktu na aukcję               |    C   |    C    | ... |
-| ???                                               |  ...   |  ...    | ... |
-
-
+| Przypadek użycia                                  | Aukcja | Produkt |
+| ------------------------------------------------- | ------ | ------- |
+| UC1: Wystawienia produktu na aukcję               |    C   |    C    |
+| UC2: Podbicie najwyższej oferty                   |    U   |    -    |
+| UC3: Odbiór produktu nabytego na aukcji           |    -   |    R    |
+| UC4: Zamknięcie aukcji                            |    D   |    U    |
+| UC5: Przejrzenie dostępnych aukcji                |    R   |    -    |
+| UC6: Potwierdzenie odbioru produktu               |    -   |    D    |
