@@ -1,0 +1,1 @@
+2.1. Do klasy można dodać pole śledzące stan połączenia, które będzie sprawdzane przed i po odczycie danych. Niestety nie jestem pewien jak dobrze sprawdzić stan otwarcia po odczytaniu danych, więc ta część znajduje się w samym teście.
