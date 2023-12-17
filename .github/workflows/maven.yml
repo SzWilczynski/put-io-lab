@@ -10,9 +10,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "javadoc-setup" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "javadoc-setup" ]
+    branches: [ "main" ]
 
 jobs:
   build:
